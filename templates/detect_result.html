@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Risk Prediction Result</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,0.5)),
+                url("/static/detectresult.jpg") no-repeat center/cover;
+            padding: 40px;
+            color: #fff;
+        }
+
+        .card {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== SCORE CARDS ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .stat b {
+            font-size: 26px;
+            color: #00f5ff;
+        }
+
+        h3 {
+            margin: 35px 0 15px;
+            font-size: 26px;
+        }
+
+        .box {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 14px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            padding: 10px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        /* ===== GRAPH GRID ===== */
+        .charts {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .chart-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+        }
+
+        .chart-card h4 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .chart-card p {
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.85;
+            margin-bottom: 10px;
+        }
+
+        .chart-card img {
+            width: 100%;
+            background: #fff;
+            padding: 10px;
+            border-radius: 14px;
+        }
+
+        .actions {
+            margin-top: 45px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 36px;
+            font-size: 17px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn-run {
+            background: linear-gradient(135deg, #ff512f, #dd2476);
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+        }
+
+        @media (max-width: 900px) {
+            .charts {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+
+    <h1>🔍 Risk Prediction Result</h1>
+
+    <!-- SCORE CARDS -->
+    <div class="stats">
+        <div class="stat">Prediction Value<br><b>{{ prediction }}</b></div>
+        <div class="stat">Risk Score (%)<br><b>{{ risk_score }}</b></div>
+        <div class="stat">Risk Level<br><b>{{ risk_level }}</b></div>
+        <div class="stat">Rank Score<br><b>{{ 100 - risk_score }}</b></div>
+    </div>
+
+    <!-- INPUT DETAILS -->
+    <h3>📋 Input Details</h3>
+    <div class="box">
+        <ul>
+            {% for k, v in inputs.items() %}
+            <li><b>{{ k }}:</b> {{ v }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- RECOMMENDATIONS -->
+    <h3>💡 AI Risk Recommendations</h3>
+    <div class="box">
+        {% if risk_level == "Low Risk" %}
+            ✅ Financial position is stable.<br>
+            📌 Maintain current strategies.<br>
+            📈 Monitor periodically.
+        {% elif risk_level == "Medium Risk" %}
+            ⚠️ Moderate risk detected.<br>
+            📌 Improve liquidity & cost control.<br>
+            📊 Reduce credit exposure.
+        {% else %}
+            🚨 High risk detected!<br>
+            📌 Immediate corrective actions required.<br>
+            🏦 Strengthen cash flow & reduce liabilities.<br>
+            📉 Avoid high-risk investments.
+        {% endif %}
+    </div>
+
+    <!-- GRAPHS -->
+    <h3>📈 Risk Analytics Visualizations</h3>
+    <div class="charts">
+
+        <div class="chart-card">
+            <h4>Risk Score Bar Chart</h4>
+            <p>X-axis: Category | Y-axis: Risk Percentage</p>
+            <img src="/static/plots/det_bar.png">
+        </div>
+
+        <div class="chart-card">
+            <h4>Risk Composition Pie Chart</h4>
+            <p>Risk vs Safe percentage</p>
+            <img src="/static/plots/det_pie.png">
+        </div>
+
+        <div class="chart-card">
+            <h4>Risk Trend Line</h4>
+            <p>X-axis: Prediction Index | Y-axis: Risk Score</p>
+            <img src="/static/plots/det_line.png">
+        </div>
+
+        <div class="chart-card">
+            <h4>Input Feature Scatter</h4>
+            <p>X-axis: Feature Index | Y-axis: Feature Value</p>
+            <img src="/static/plots/det_scatter.png">
+        </div>
+
+        <div class="chart-card">
+            <h4>Input Feature Heatmap</h4>
+            <p>Feature intensity correlation</p>
+            <img src="/static/plots/det_heatmap.png">
+        </div>
+
+        <div class="chart-card">
+            <h4>Risk Score Histogram</h4>
+            <p>X-axis: Risk Score | Y-axis: Frequency</p>
+            <img src="/static/plots/target_dist.png">
+        </div>
+
+    </div>
+
+    <div class="actions">
+        <a href="/detect" class="btn btn-run">🔁 Run Another Prediction</a>
+        <a href="/" class="btn btn-home">🏠 Home</a>
+    </div>
+
+</div>
+
+</body>
+</html>

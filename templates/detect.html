@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Risk Detection</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,0.5)),
+                url("/static/detect.jpg") no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .card {
+            width: 460px;
+            padding: 40px 35px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        h2 span {
+            color: #ffcc70;
+        }
+
+        label {
+            font-size: 14px;
+            opacity: 0.9;
+            display: block;
+            margin-top: 12px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            background: rgba(255,255,255,0.95);
+            margin-top: 6px;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff512f, #dd2476);
+            color: #fff;
+            transition: all 0.35s ease;
+        }
+
+        button:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(221, 36, 118, 0.6);
+        }
+
+        .btn-home {
+            display: inline-block;
+            margin-top: 22px;
+            text-decoration: none;
+            text-align: center;
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>🚨 <span>Risk Detection</span></h2>
+
+    <form action="/detect_process" method="POST">
+{% for f in features %}
+    <label>{{ f }}</label>
+    {% if f in dropdowns %}
+        <select name="{{ f }}" required>
+            {% for v in dropdowns[f] %}
+                <option value="{{ v }}">{{ v }}</option>
+            {% endfor %}
+        </select>
+    {% else %}
+        <input type="number" step="any" name="{{ f }}" required>
+    {% endif %}
+{% endfor %}
+<button class="btn-detect">🔍 Detect Risk</button>
+</form>
+
+    <a href="/" class="btn-home">🏠 Back to Home</a>
+
+    <footer>
+        🤖 AI-Powered Risk Intelligence System
+    </footer>
+</div>
+
+</body>
+</html>

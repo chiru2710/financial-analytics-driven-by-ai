@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intelligent Financial Analytics Driven by AI</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: 
+                /* linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), */
+                url("/static/home.jpg") no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px 60px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 span {
+            color: #00f5ff;
+        }
+
+        p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.35s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-train {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: #fff;
+        }
+
+        .btn-train:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 114, 255, 0.6);
+        }
+
+        .btn-detect {
+            background: linear-gradient(135deg, #ff512f, #dd2476);
+            color: #fff;
+        }
+
+        .btn-detect:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(221, 36, 118, 0.6);
+        }
+
+        footer {
+            margin-top: 35px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🤖 <span>Financial Analytics</span><br>Driven by AI</h1>
+        <p>📊 Predict  📈 Analyze  🛡️ Detect Financial Risks with 🤖 Artificial Intelligence</p>
+
+        <div class="btn-group">
+            <a href="/train" class="btn btn-train">
+                📈 Train Data & Analysis
+            </a>
+
+            <a href="/detect" class="btn btn-detect">
+                🚨 Finance Risk Detection
+            </a>
+        </div>
+
+        <footer>
+            ⚡ Powered by AI | Secure • Smart • Scalable
+        </footer>
+    </div>
+
+</body>
+</html>

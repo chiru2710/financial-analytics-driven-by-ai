@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Financial Dataset</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                /* linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), */
+                url("/static/train.jpg") no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .card {
+            width: 420px;
+            padding: 40px 35px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.65);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        h2 span {
+            color: #00f5ff;
+        }
+
+        .upload-box {
+            border: 2px dashed rgba(255,255,255,0.4);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .upload-box:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        input[type="file"] {
+            width: 100%;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-train {
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: #fff;
+            transition: all 0.35s ease;
+        }
+
+        .btn-train:hover {
+            transform: translateY(-5px) scale(1.04);
+            box-shadow: 0 15px 40px rgba(0,114,255,0.6);
+        }
+
+        .btn-home {
+            display: inline-block;
+            margin-top: 22px;
+            text-decoration: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ff512f, #dd2476);
+            color: #fff;
+            transition: all 0.35s ease;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(221,36,118,0.6);
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>📂 <span>Upload Dataset</span></h2>
+
+        <form action="/train_process" method="post" enctype="multipart/form-data">
+
+            <div class="upload-box">
+                <p>📑 Select CSV File</p><br>
+                <input type="file" name="csv_file" accept=".csv" required>
+            </div>
+
+            <button type="submit" class="btn-train">
+                🚀 Train & Analyze
+            </button>
+        </form>
+
+        <a href="/" class="btn-home">
+            🏠 Return Home
+        </a>
+
+        <footer>
+            🤖 AI-Powered Financial Model Training
+        </footer>
+    </div>
+
+</body>
+</html>
