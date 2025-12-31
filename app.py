@@ -23,7 +23,10 @@ from database import init_db, save_training_record
 app = Flask(__name__)
 
 # 🆕 INIT DATABASE
-init_db()
+try:
+    init_db()
+except Exception as e:
+    print("⚠️ Database not available yet:", e)
 
 UPLOAD_FOLDER = "uploads"
 PLOT_FOLDER = "static/plots"
